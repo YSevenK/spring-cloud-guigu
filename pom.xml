@@ -12,6 +12,7 @@
     <modules>
         <module>services</module>
         <module>services/service-product</module>
+        <module>model</module>
     </modules>
     <groupId>com.ysevenk</groupId>
     <artifactId>cloud-demo</artifactId>

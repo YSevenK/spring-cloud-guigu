@@ -1,6 +1,6 @@
 package com.ysevenk.order.controller;
 
-import com.ysevenk.order.bead.Order;
+import com.ysevenk.order.bean.Order;
 import com.ysevenk.order.service.OrderService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;

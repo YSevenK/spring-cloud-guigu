@@ -1,5 +1,6 @@
-package com.ysevenk.order.bead;
+package com.ysevenk.order.bean;
 
+import com.ysevenk.product.bean.Product;
 import lombok.Data;
 
 import java.math.BigDecimal;
@@ -11,6 +12,6 @@ public class Order {
     private BigDecimal totalAmount;
     private Long userId;
     private String nickname;
-    private List<Object> productList;
+    private List<Product> productList;
     private String address;
 }
