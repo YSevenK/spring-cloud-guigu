@@ -1,6 +1,7 @@
 package com.ysevenk.order.controller;
 
 import com.ysevenk.order.bean.Order;
+import com.ysevenk.order.properties.OrderProperties;
 import com.ysevenk.order.service.OrderService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
@@ -9,21 +10,20 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
-@RefreshScope   //自动刷新nacos配置
+//@RefreshScope   //自动刷新nacos配置
 @RestController
 public class OrderController {
     @Autowired
     OrderService orderService;
 
-    @Value("${order.timeout}")
-    String orderTimeout;
-
-    @Value("${order.auto-confirm}")
-    String orderAutoConfirm;
+    @Autowired
+    OrderProperties orderProperties;
 
     @GetMapping("/config")
     public String config() {
-        return "order.timeout=" + orderTimeout + "; order-confirm=" + orderAutoConfirm;
+        return "order.timeout= " + orderProperties.getTimeout()
+                + "; order-confirm= " + orderProperties.getAutoConfirm()
+                + "order.db_url= " + orderProperties.getDbUrl();
     }
 
     // 创建订单
