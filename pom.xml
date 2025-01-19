@@ -9,6 +9,10 @@
         <relativePath/> <!-- lookup parent from repository -->
     </parent>
     <packaging>pom</packaging>
+    <modules>
+        <module>services</module>
+        <module>services/service-product</module>
+    </modules>
     <groupId>com.ysevenk</groupId>
     <artifactId>cloud-demo</artifactId>
     <version>0.0.1-SNAPSHOT</version>
