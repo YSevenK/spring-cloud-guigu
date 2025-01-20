@@ -7,11 +7,15 @@ import org.springframework.boot.ApplicationArguments;
 import org.springframework.boot.ApplicationRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.cloud.client.discovery.EnableDiscoveryClient;
+import org.springframework.cloud.openfeign.EnableFeignClients;
 import org.springframework.context.annotation.Bean;
 
 import java.util.concurrent.Executor;
 import java.util.concurrent.Executors;
 
+@EnableFeignClients // 开启远程调用功能
+@EnableDiscoveryClient
 @SpringBootApplication
 public class OrderMainApplication {
     public static void main(String[] args) {
@@ -37,7 +41,7 @@ public class OrderMainApplication {
                     System.out.println("邮件通知...");
                 }
             });
-            System.out.println("=====>");
+            // System.out.println("=====>");
         };
     }
 }
