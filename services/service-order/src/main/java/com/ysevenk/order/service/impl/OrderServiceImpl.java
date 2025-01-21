@@ -1,6 +1,7 @@
 package com.ysevenk.order.service.impl;
 
 import com.alibaba.csp.sentinel.annotation.SentinelResource;
+import com.alibaba.csp.sentinel.slots.block.BlockException;
 import com.ysevenk.order.bean.Order;
 import com.ysevenk.order.feign.ProductFeignClient;
 import com.ysevenk.order.service.OrderService;
@@ -32,7 +33,7 @@ public class OrderServiceImpl implements OrderService {
     @Autowired
     ProductFeignClient productFeignClient;
 
-    @SentinelResource(value = "createOrder")
+    @SentinelResource(value = "createOrder", blockHandler = "createOrderFallback")
     @Override
     public Order createOrder(Long productId, Long userId) {
         // Product product = getProductFromRemote(productId);
@@ -49,6 +50,18 @@ public class OrderServiceImpl implements OrderService {
         order.setAddress("成都");
         // 远程调用 查询商品列表
         order.setProductList(Arrays.asList(product));
+        return order;
+    }
+
+    // 兜底回调
+    public Order createOrderFallback(Long productId, Long userId, BlockException e) {
+        Order order = new Order();
+        order.setId(0L);
+        order.setTotalAmount(new BigDecimal("0"));
+        order.setUserId(userId);
+        order.setNickname("未知用户");
+        order.setAddress("异常信息:" + e.getClass());
+
         return order;
     }
 
