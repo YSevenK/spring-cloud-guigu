@@ -8,10 +8,12 @@ import com.ysevenk.order.service.OrderService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 //@RefreshScope   //自动刷新nacos配置
+@RequestMapping("/api/order")
 @Slf4j
 @RestController
 public class OrderController {
